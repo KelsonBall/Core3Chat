@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="MyWpfApp.ChatroomView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyWpfApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding Messages}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding}">
+                        <ContentPresenter.Resources>
+                            <DataTemplate DataType="{x:Type local:SentMessageViewModel}">
+                                <Border Margin="2" CornerRadius="4" Background="LightGray">
+                                    <StackPanel>
+                                        <Label FontWeight="Bold" Content="{Binding Username}" />
+                                        <Label Content="{Binding Text}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:RecievedMessageViewModel}">
+                                <Border Margin="2" CornerRadius="4" BorderThickness="1,1,0,0" BorderBrush="Black">
+                                    <StackPanel>
+                                        <Label FontWeight="Bold" Content="{Binding Username}" />
+                                        <Label Content="{Binding Text}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ContentPresenter.Resources>
+                    </ContentPresenter>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding TextToSend}" />
+            <Button Grid.Column="1" Command="{Binding SendMessageCommand}">Send</Button>
+        </Grid>
+    </Grid>
+</UserControl>

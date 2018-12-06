@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Wpf">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ChatroomView.xaml" />
+    <None Remove="LoginView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+    <Page Include="ChatroomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.DesktopUI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kelson.Common.Async" Version="0.2.0-beta" />
+    <PackageReference Include="Kelson.Common.Events" Version="0.1.2" />
+    <PackageReference Include="Kelson.Common.Wpf" Version="0.1.0-beta" />
+    <PackageReference Include="Kelson.Common.Wpf.NetCore" Version="0.1.0-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyWpfApp.SignalrClient\MyWpfApp.SignalrClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <HintPath>PresentationCore</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>PresentationFramework</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <HintPath>System.Xaml</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <HintPath>WindowsBase</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ChatroomView.xaml.cs">
+      <DependentUpon>ChatroomView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
