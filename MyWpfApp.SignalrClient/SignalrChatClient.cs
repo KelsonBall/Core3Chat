@@ -8,14 +8,14 @@ namespace MyWpfApp.SignalrClient
     public class SignalrChatClient : IChatClient
     {
         private readonly HubConnection hub;
-        private readonly string user;
+        private readonly ICredential credentials;
 
-        public SignalrChatClient(string user)
+        public SignalrChatClient(ICredential user)
         {
             hub = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5000/chat/")
-                .Build();            
-            this.user = user;
+                .WithUrl($"http://{user.Host}/chat/")
+                .Build();
+            this.credentials = user;
             hub.On<ServerMessage>(nameof(IChatClient.RecieveMessage), RecieveMessage);            
         }
 
@@ -35,7 +35,7 @@ namespace MyWpfApp.SignalrClient
 
         public async Task SendMessageAsync(IMessage message)
         {
-            message.Username = user;
+            message.Username = credentials.Username;
             await hub.SendAsync(nameof(IChatServer<ServerMessage>.SendMessage), message);
         }
     }

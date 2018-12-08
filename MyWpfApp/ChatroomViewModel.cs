@@ -14,6 +14,8 @@ namespace MyWpfApp
     {
         public event Action OnLogout;
 
+        public event Action OnLostConnection;
+
         private readonly IChatClient client;
 
         public ObservableCollection<MessageViewModel> Messages { get; set; }
@@ -26,11 +28,14 @@ namespace MyWpfApp
         public ICommand SendMessageCommand { get; set; }
 
         private readonly IDispatcher uiThread;
+        private readonly IAppHost application;
 
-        public ChatroomViewModel(IEventManager context) : base(context)
+        public ChatroomViewModel(IEventManager context, IChatClient client) : base(context)
         {
-            client = context.Request<IChatClient>();
+            this.client = client;
             uiThread = context.Request<IDispatcher>();
+            application = context.Request<IAppHost>();
+
             LogoutCommand = new ActionCommand(logout);
             SendMessageCommand = new ActionCommand(sendMessage);
 
@@ -44,9 +49,13 @@ namespace MyWpfApp
 
         private void sendMessage()
         {
-            var message = new ClientMessage { Text = TextToSend };            
-            Messages.Add(new SentMessageViewModel(message));
-            client.SendMessageAsync(message).ConfirmOn(uiThread, errorCallback: e => throw e);                
+            if (!string.IsNullOrEmpty(TextToSend))
+            {
+                var message = new ClientMessage { Text = TextToSend };
+                Messages.Add(new SentMessageViewModel(message));
+                TextToSend = null;
+                client.SendMessageAsync(message).ConfirmOn(uiThread, errorCallback: handleNetworkError);
+            }
         }
 
         private void RecieveMessage(IMessage message)
@@ -67,6 +76,19 @@ namespace MyWpfApp
         private void logout()
         {
             OnLogout?.Invoke();
+        }
+
+        const string CONNECTION_NOT_ACTIVE = "connection is not active";
+
+        private void handleNetworkError(Exception e)
+        {
+            if (e.Message.Contains(CONNECTION_NOT_ACTIVE))
+            {
+                application.WarnUser("Connection to server lost 🙁", "NETWORK ERROR");
+                OnLostConnection?.Invoke();
+            }
+            else
+                throw e;
         }
     }
 }

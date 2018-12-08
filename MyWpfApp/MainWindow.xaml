@@ -5,21 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyWpfApp"        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/> <!-- Menu Row -->
+            <RowDefinition Height="*" /> <!-- Body Row-->
         </Grid.RowDefinitions>
-        <ContentPresenter Content="{Binding Content}">
-            <ContentPresenter.Resources>
-                <DataTemplate DataType="{x:Type local:LoginViewModel}">
-                    <local:LoginView DataContext="{Binding}" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type local:ChatroomViewModel}">
-                    <local:ChatroomView DataContext="{Binding}" />
-                </DataTemplate>
-            </ContentPresenter.Resources>
-        </ContentPresenter>
+        <local:ServerListView DataContext="{Binding Servers}" Grid.Row="1"/>
     </Grid>
 </Window>

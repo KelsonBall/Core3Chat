@@ -3,6 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MyWpfApp">
     <Application.Resources>
-        <SolidColorBrush x:Key="BorderColor1">FFFF0000</SolidColorBrush>
+        <Color x:Key="FontColorDefault">#FF101010</Color>
+        <Color x:Key="FontColorLight">#FF303030</Color>
+        <Color x:Key="FontColorHeavy">#FF000000</Color>
+        <Color x:Key="BorderColorDefault">#FF000000</Color>
+        <Color x:Key="BorderColorLight">#FF333333</Color>
+        <Color x:Key="BorderColorHeavy">#FF000000</Color>
+        <GridLength x:Key="MarginDefault">2</GridLength>
+        <GridLength x:Key="MarginLight">2</GridLength>
+        <GridLength x:Key="MarginHeavy">4</GridLength>
+        <GridLength x:Key="BorderThicknessDefault">1</GridLength>
+        <GridLength x:Key="BorderThicknessLight">1</GridLength>
+        <GridLength x:Key="BorderThicknessHeavy">2</GridLength>
     </Application.Resources>
 </Application>

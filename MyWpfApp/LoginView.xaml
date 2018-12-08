@@ -13,11 +13,9 @@
         </Grid.RowDefinitions>
         <StackPanel Margin="8">
             <Label>Name</Label>
-            <TextBox Text="{Binding Username}" Width="200">
-                <TextBox.InputBindings>
-                    <KeyBinding Key="Return" Command="{Binding LoginCommand}" />
-                </TextBox.InputBindings>
-            </TextBox>
+            <TextBox Text="{Binding Username}" Width="200" />
+            <Label>Server</Label>
+            <TextBox Text="{Binding Server}" Width="200" />
         </StackPanel>
         <Button Grid.Row="1" Command="{Binding LoginCommand}" Margin="8">Login</Button>
     </Grid>

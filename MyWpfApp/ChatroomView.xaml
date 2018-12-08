@@ -11,39 +11,47 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ItemsControl ItemsSource="{Binding Messages}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentPresenter Content="{Binding}">
-                        <ContentPresenter.Resources>
-                            <DataTemplate DataType="{x:Type local:SentMessageViewModel}">
-                                <Border Margin="2" CornerRadius="4" Background="LightGray">
-                                    <StackPanel>
-                                        <Label FontWeight="Bold" Content="{Binding Username}" />
-                                        <Label Content="{Binding Text}" />
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type local:RecievedMessageViewModel}">
-                                <Border Margin="2" CornerRadius="4" BorderThickness="1,1,0,0" BorderBrush="Black">
-                                    <StackPanel>
-                                        <Label FontWeight="Bold" Content="{Binding Username}" />
-                                        <Label Content="{Binding Text}" />
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ContentPresenter.Resources>
-                    </ContentPresenter>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding TextToSend}" />
-            <Button Grid.Column="1" Command="{Binding SendMessageCommand}">Send</Button>
-        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" ScrollChanged="ScrollViewer_ScrollChanged">
+            <ItemsControl ItemsSource="{Binding Messages}" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding}">
+                            <ContentPresenter.Resources>
+                                <DataTemplate DataType="{x:Type local:SentMessageViewModel}">
+                                    <Border Margin="2" CornerRadius="4,0,0,0" Background="LightGray">
+                                        <StackPanel>
+                                            <Label FontWeight="Bold" Content="{Binding Username}" />
+                                            <Label Content="{Binding Text}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type local:RecievedMessageViewModel}">
+                                    <Border Margin="2" CornerRadius="4,0,0,0" BorderThickness="1,1,0,0" BorderBrush="Black">
+                                        <StackPanel>
+                                            <Label FontWeight="Bold" Content="{Binding Username}" />
+                                            <Label Content="{Binding Text}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,1,0,0" Padding="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding TextToSend, UpdateSourceTrigger=PropertyChanged}" Margin="2">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding SendMessageCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Grid.Column="1" Margin="2" Command="{Binding SendMessageCommand}">Send</Button>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

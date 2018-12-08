@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWpfApp", "MyWpfApp\MyWpfA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWpfApp.SignalrClient", "MyWpfApp.SignalrClient\MyWpfApp.SignalrClient.csproj", "{6EA96444-91AE-447D-A910-0235BD816551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWpfApp.Server", "MyWpfApp.Server\MyWpfApp.Server.csproj", "{3E35376F-8E9F-41A7-8240-7A16E002B5F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWpfApp.Server", "MyWpfApp.Server\MyWpfApp.Server.csproj", "{3E35376F-8E9F-41A7-8240-7A16E002B5F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWpfApp.ClientInterface", "MyWpfApp.ClientInterface\MyWpfApp.ClientInterface.csproj", "{7EAA1A48-1D9E-4C6A-B5CB-57AA87F1A43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWpfApp.ClientInterface", "MyWpfApp.ClientInterface\MyWpfApp.ClientInterface.csproj", "{7EAA1A48-1D9E-4C6A-B5CB-57AA87F1A43E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWpfApp.Themes", "MyWpfApp.Themes\MyWpfApp.Themes.csproj", "{AF1D6EE5-35E4-4A6C-A21B-CE7A21A47441}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7EAA1A48-1D9E-4C6A-B5CB-57AA87F1A43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EAA1A48-1D9E-4C6A-B5CB-57AA87F1A43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EAA1A48-1D9E-4C6A-B5CB-57AA87F1A43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1D6EE5-35E4-4A6C-A21B-CE7A21A47441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1D6EE5-35E4-4A6C-A21B-CE7A21A47441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1D6EE5-35E4-4A6C-A21B-CE7A21A47441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1D6EE5-35E4-4A6C-A21B-CE7A21A47441}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

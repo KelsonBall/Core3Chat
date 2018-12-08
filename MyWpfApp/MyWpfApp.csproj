@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Wpf">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="ChatroomView.xaml" />
     <None Remove="LoginView.xaml" />
+    <None Remove="ServerListView.xaml" />
+    <None Remove="ServerView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +23,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml" />
+    <Page Include="ServerListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +40,7 @@
     <PackageReference Include="Kelson.Common.Events" Version="0.1.2" />
     <PackageReference Include="Kelson.Common.Wpf" Version="0.1.0-beta" />
     <PackageReference Include="Kelson.Common.Wpf.NetCore" Version="0.1.0-beta" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +72,14 @@
     </Compile>
     <Compile Update="LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ServerListView.xaml.cs">
+      <DependentUpon>ServerListView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ServerView.xaml.cs">
+      <DependentUpon>ServerView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
